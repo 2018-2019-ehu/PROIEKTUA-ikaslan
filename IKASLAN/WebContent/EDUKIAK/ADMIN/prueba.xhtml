@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:composition template="/EDUKIAK/TXANT/txant.xhtml">
+    <ui:define name="Izenburua">IKASLAN</ui:define>
+    <ui:define name="OrrialdeIzenburua">IKASLAN</ui:define>
+    <ui:define name="Edukia">
+    
+        <h:form>
+        
+        IZENA: <h:inputText id="izena" value="#{enpresaMB.izena}" required="true" requiredMessage="Izena sartu behar duzu" />
+        <h:message for="izena" style="color:red" />
+        <br/>
+        ARLOA: <h:inputText id="arloa" value="#{enpresaMB.arloa}" reequired="true" requiredMessage="Arloa sartu behar duzu"/>
+        <h:message for="arloa" style="color:red"/>
+        DESKRIBAPENA: <h:inputText value="#{enpresaMB.deskribapena}" id="deskribapena" required="true" requiredMessage="Deskribapena sartu behar duzu"/>
+        <h:message for="deskribapena" style="color:red"/>
+        <h:commandButton id="send" actionListener="#{orokorrakMB.enpresaGorde(enpresaMB)}" value="GEHITU" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
