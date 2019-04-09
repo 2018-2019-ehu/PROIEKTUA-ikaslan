@@ -4,7 +4,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import dl.Enpresa;
@@ -26,7 +25,7 @@ public class zerbitzuEJB {
 		em.persist(i);
 	}
 
-	public Ikaslea ikasleaLogin(String username) throws NoResultException{
+	public Ikaslea ikasleaLogin(String username) {
 		
 		try
 		{
