@@ -61,12 +61,12 @@ public class orokorrakMB implements Serializable {
 				if(log.getPasahitzaLog().equals(i.getPasahitza())){
 					return "ikasleaHome";
 				}else{
-					return "errorea";
+					return "erroreaPasahitza";
 				}
 			}
 			else
 			{
-				return "errorea";
+				return "erroreaErabiltzailea";
 			}
 			
 			
@@ -82,16 +82,19 @@ public class orokorrakMB implements Serializable {
 				}
 				else
 				{
-					return "errorea";
+					return "erroreaPasahitza";
 				}
 				
 			}
-			else if(e==null)
+			else
 			{
-				return "errorea";
+				return "erroreaErabiltzailea";
 			}
 		}
-		return "hasiera";
+		else
+		{
+			return "ikasleaPub";
+		}
 			
 			
 		

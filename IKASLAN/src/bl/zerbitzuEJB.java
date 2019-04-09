@@ -4,6 +4,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import dl.Enpresa;
@@ -25,17 +26,32 @@ public class zerbitzuEJB {
 		em.persist(i);
 	}
 
-	public Ikaslea ikasleaLogin(String username){
+	public Ikaslea ikasleaLogin(String username) throws NoResultException{
 		
-		Ikaslea i = (Ikaslea)em.createNamedQuery("Ikaslea.findUser").setParameter("username",username).getSingleResult();
+		try
+		{
+			Ikaslea i = (Ikaslea)em.createNamedQuery("Ikaslea.findUser").setParameter("username",username).getSingleResult();
+			return i;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 		
-		return i;
+		
 		
 	}
 	public Enpresa enpresaLogin(String username)
 	{
-		Enpresa e=(Enpresa)em.createNamedQuery("Enpresa.findUser").setParameter("username", username).getSingleResult();
-		return e;
+		try
+		{
+			Enpresa e=(Enpresa)em.createNamedQuery("Enpresa.findUser").setParameter("username", username).getSingleResult();
+			return e;
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 	public Ikaslea ikasleaAldatuDB(Ikaslea i,String id){
 		
