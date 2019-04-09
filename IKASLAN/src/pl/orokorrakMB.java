@@ -71,7 +71,7 @@ public class orokorrakMB implements Serializable {
 			
 			
 		}
-		else if(log.getA()==2){
+		else{
 			
 			e=ejb.enpresaLogin(log.getUsernameLog());
 			if(e!=null)
@@ -91,10 +91,7 @@ public class orokorrakMB implements Serializable {
 				return "erroreaErabiltzailea";
 			}
 		}
-		else
-		{
-			return "ikasleaPub";
-		}
+		
 			
 			
 		
