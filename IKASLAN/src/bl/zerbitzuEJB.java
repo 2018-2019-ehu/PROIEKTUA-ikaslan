@@ -1,5 +1,7 @@
 package bl;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
@@ -7,7 +9,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dl.Enpresa;
+import dl.Eskaintzak;
+import dl.Eskariak;
 import dl.Ikaslea;
+
 
 @Singleton
 @LocalBean
@@ -17,13 +22,31 @@ public class zerbitzuEJB {
 	private EntityManager em;
 	
 	public void enpresaGehitu(Enpresa e){
-		
-		em.persist(e);
-		
+	//---------------------------------------------------	
+		try
+    	{
+    		em.createNamedQuery("IkasleaEntity.findUser").setParameter("username", e.getUsername()).getSingleResult();
+    		
+    		//Enpresa jadanik existitzen dela dioen errorea falta da!
+    	}
+    	catch(Exception o)
+		{
+    		em.persist(e);//Soilik gorde na hori ez badago
+    	}
+	//----------------------------------------------------	
 	}
 	public void ikasleaGehitu(Ikaslea i){
-		em.persist(i);
+	//----------------------------------------------------
+		if(em.find(Ikaslea.class, i.getNan())==null)//Ez badu aurkitzen, gorde
+		{
+			em.persist(i);
+		}
+		else//Aurkitzen badu NAN hori duen ikaslerik
+		{
+			//Ikaslea existitzen dela dioen errorea!
+		}
 	}
+	//----------------------------------------------------
 
 	public Ikaslea ikasleaLogin(String username) {
 		
@@ -65,4 +88,35 @@ public class zerbitzuEJB {
 		
 		
 	}
+	//----------------------------------------------------------------------
+	 @SuppressWarnings("unchecked")
+	 public List<Eskaintzak> getListEskaintzak()
+	  {
+		 	List<Eskaintzak> eskaintzak=(List<Eskaintzak>)em.createNamedQuery("Eskaintzak.findAll").getResultList();
+	    	return eskaintzak;
+	  }
+	 
+	 @SuppressWarnings("unchecked")
+	 public List<Ikaslea> getListIkasleak()
+	  {
+		 	List<Ikaslea> ikasleak=(List<Ikaslea>)em.createNamedQuery("Ikaslea.findAll").getResultList();
+	    	return ikasleak;
+	  }
+	 @SuppressWarnings("unchecked")
+	 public List<Enpresa> getListEnpresak()
+	  {
+		 	List<Enpresa> enpresak=(List<Enpresa>)em.createNamedQuery("Enpresa.findAll").getResultList();
+	    	return enpresak;
+	  }
+	 @SuppressWarnings("unchecked")
+	 public List<Eskariak> getListEskariak()
+	  {
+		 	List<Eskariak> eskariak=(List<Eskariak>)em.createNamedQuery("Eskariak.findAll").getResultList();
+	    	return eskariak;
+	  }
+	 
+	 
+	 
+	 
+	 
 }

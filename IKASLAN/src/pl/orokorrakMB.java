@@ -10,8 +10,13 @@ import javax.inject.Named;
 
 import bl.zerbitzuEJB;
 import dl.Enpresa;
+import dl.Eskaintzak;
+import dl.Eskariak;
 import dl.Ikaslea;
+
+
 import java.io.Serializable;
+import java.util.List;
 
 
 @SessionScoped
@@ -118,6 +123,27 @@ public class orokorrakMB implements Serializable {
 		this.i = i;
 	}
 	
+	//-------------------------------------------------------------------
+	public List<Ikaslea> getListIkasle()
+	{
+		List<Ikaslea> ikasle=ejb.getListIkasleak();
+		return ikasle;
+	}
+	public List<Eskaintzak> getListEskaintzak()
+	{
+		List<Eskaintzak> eskaintzak=ejb.getListEskaintzak();
+		return eskaintzak;
+	}
+	public List<Enpresa> getListEnpresak()
+	{
+		List<Enpresa> enpresak=ejb.getListEnpresak();
+		return enpresak;
+	}
+	public List<Eskariak> getListEskariak()
+	{
+		List<Eskariak> eskariak=ejb.getListEskariak();
+		return eskariak;
+	}
 	
 	
 	

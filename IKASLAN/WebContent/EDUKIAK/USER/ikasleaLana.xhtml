@@ -3,7 +3,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-
 <h:head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="../STYLE/estiloa.css" />
@@ -16,7 +15,7 @@
 		</div>
 		<div class="div3">
 			<h:form class="form"> 
-				<h:commandButton action="ikasleaHome" value="LANA BILATU" class="button" />
+				<h:commandButton action="ikasleaLana.xhtml" value="LANA BILATU" class="button" />
 			</h:form>
 		</div>
 		<div class="div3">
@@ -26,17 +25,28 @@
 		</div>
 		<div class="div3">
 			<h:form class="form">
-				<h:commandButton  value="LOGOUT" class="button" />
+				<h:commandButton  action="#{orokorrakMB.logout()}" value="LOGOUT" class="button" />
 			</h:form>
 		</div>
 	</div>
-	<br></br><br></br><br></br>
-	<h2 style="color: white; text-align: center;">prueba</h2>
+	<br></br>
+	<h2 style="color: white; text-align: center;">LAN BILATZAILEA</h2>
+	<h3>Hauek dira dauden lan eskaintzak. Bilaketa zehatzagoa egiteko idatzi filtroetan.</h3>
 	<div class="divprofila">
 		<br></br>
-		
-		
-	
+		<h:form>
+			<h:dataTable value="#{orokorrakMB.listEskaintzak()}" var="eskaintzak" border="2">
+				<h:column>
+					<f:facet name="header">IRAUPENA</f:facet>
+					#{eskaintzak.iraupena}
+				</h:column>
+				<h:column>
+					<f:facet name="header">ORDUTEGIA</f:facet>
+					#{eskaintzak.ordutegia}
+				</h:column>
+			
+			</h:dataTable>
+		</h:form>
 	</div>
 	
 </h:body>
