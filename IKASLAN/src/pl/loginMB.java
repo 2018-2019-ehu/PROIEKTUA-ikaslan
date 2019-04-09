@@ -10,7 +10,7 @@ public class loginMB {
 	
 	private String usernameLog;
 	private String pasahitzaLog;
-	private int a;
+	private int a=1;
 
 	
 	public loginMB(){

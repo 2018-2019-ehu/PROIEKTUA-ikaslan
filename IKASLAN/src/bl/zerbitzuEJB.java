@@ -32,6 +32,11 @@ public class zerbitzuEJB {
 		return i;
 		
 	}
+	public Enpresa enpresaLogin(String username)
+	{
+		Enpresa e=(Enpresa)em.createNamedQuery("Enpresa.findUser").setParameter("username", username).getSingleResult();
+		return e;
+	}
 	public Ikaslea ikasleaAldatuDB(Ikaslea i,String id){
 		
 		Ikaslea ikasDB = em.find(Ikaslea.class, id);

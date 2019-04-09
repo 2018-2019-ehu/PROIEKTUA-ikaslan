@@ -31,6 +31,8 @@ public class orokorrakMB implements Serializable {
 	@EJB
 	private zerbitzuEJB ejb;
 	Ikaslea i;
+	Enpresa e;
+	
 	
 	/////Datu basea betetzeko:
 	public void enpresaGorde(EnpresaMB en) throws IOException{ 
@@ -53,20 +55,45 @@ public class orokorrakMB implements Serializable {
 		if(log.getA()==1){
 			
 			i=ejb.ikasleaLogin(log.getUsernameLog());
+			if(i!=null)
+			{
 			
-			if(log.getPasahitzaLog().equals(i.getPasahitza())){
-				return "ikasleaHome";
-			}else{
+				if(log.getPasahitzaLog().equals(i.getPasahitza())){
+					return "ikasleaHome";
+				}else{
+					return "errorea";
+				}
+			}
+			else
+			{
 				return "errorea";
 			}
 			
 			
-		}else if(log.getA()==2){
-			
-			
-			return "enpresa";
 		}
-		return "Hasiera";
+		else if(log.getA()==2){
+			
+			e=ejb.enpresaLogin(log.getUsernameLog());
+			if(e!=null)
+			{
+				if(log.getPasahitzaLog().equals(e.getPasahitza()))
+				{
+					return "enpresa";
+				}
+				else
+				{
+					return "errorea";
+				}
+				
+			}
+			else if(e==null)
+			{
+				return "errorea";
+			}
+		}
+		return "hasiera";
+			
+			
 		
 	}
 	public void logout() throws IOException{
