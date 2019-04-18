@@ -28,6 +28,12 @@ public class Eskariak implements Serializable {
 
 	public Eskariak() {
 	}
+	
+	public Eskariak(int idEskaria, Ikaslea ikasle)
+	{
+		this.idEskariak=idEskaria;
+		this.ikaslea=ikasle;
+	}
 
 	public int getIdEskariak() {
 		return this.idEskariak;

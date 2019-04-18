@@ -16,6 +16,7 @@ import dl.Ikaslea;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +38,9 @@ public class orokorrakMB implements Serializable {
 	private zerbitzuEJB ejb;
 	Ikaslea i;
 	Enpresa e;
+	private boolean eskaintzakAgertu=false;
+	private String arloa= "Denak";
+	private String enpresa= "Denak";
 	
 	
 	/////Datu basea betetzeko:
@@ -83,7 +87,7 @@ public class orokorrakMB implements Serializable {
 			{
 				if(log.getPasahitzaLog().equals(e.getPasahitza()))
 				{
-					return "enpresa";
+					return "enpresaHome";
 				}
 				else
 				{
@@ -131,7 +135,31 @@ public class orokorrakMB implements Serializable {
 	}
 	public List<Eskaintzak> getListEskaintzak()
 	{
-		List<Eskaintzak> eskaintzak=ejb.getListEskaintzak();
+		List<Eskaintzak> eskaintzak;
+		if(arloa=="Denak")
+		{
+			if(enpresa=="Denak")
+			{
+				eskaintzak=ejb.getListEskaintzak();//Bilatu denak
+			}
+			else
+			{
+				eskaintzak=ejb.getEskaintzaEnpresa(enpresa);//bilatu enpresa
+			}
+		}
+		else
+		{
+			if(enpresa=="Denak")
+			{
+				eskaintzak=ejb.getEskaintzaArloa(arloa);//bilatu arloa
+			}
+			else
+			{
+				eskaintzak=ejb.getEskaintzaArloaEnpresa(arloa, enpresa);//bilatu arloaEnpres
+			}
+		}
+		
+		
 		return eskaintzak;
 	}
 	public List<Enpresa> getListEnpresak()
@@ -145,6 +173,39 @@ public class orokorrakMB implements Serializable {
 		return eskariak;
 	}
 	
+	public void eskariaGehitu(int idEskaintzak)
+	{
+		System.out.println(idEskaintzak);
+		Eskariak eskaria=new Eskariak();
+		Eskaintzak eskaintza=ejb.getEskaintza(idEskaintzak);
+		eskaria.setEskaintzak(eskaintza);
+		eskaria.setIkaslea(i);
+		ejb.eskariaGehitu(eskaria);
+	}
+
+	public boolean getEskaintzakAgertu() {
+		return eskaintzakAgertu;
+	}
+
+	public void setAgertu() {
+		this.eskaintzakAgertu = true;
+	}
+
+	public String getArloa() {
+		return arloa;
+	}
+
+	public void setArloa(String arloa) {
+		this.arloa = arloa;
+	}
+
+	public String getEnpresa() {
+		return enpresa;
+	}
+
+	public void setEnpresa(String enpresa) {
+		this.enpresa = enpresa;
+	}
 	
 	
 

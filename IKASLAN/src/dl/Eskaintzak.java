@@ -9,7 +9,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Eskaintzak.findAll", query="SELECT e FROM Eskaintzak e")
+@NamedQueries({
+	@NamedQuery(name="Eskaintzak.findAll", query="SELECT e FROM Eskaintzak e"),
+	@NamedQuery(name="Eskaintzak.findArloaEnpresa",query="SELECT e FROM Eskaintzak e WHERE e.arloa = :arloa and e.enpresa.izena= :izena"),
+	@NamedQuery(name="Eskaintzak.findArloa",query="SELECT e FROM Eskaintzak e WHERE e.arloa =:arloa"),
+	@NamedQuery(name="Eskaintzak.findEnpresa",query="SELECT e FROM Eskaintzak e WHERE e.enpresa.izena= :izena")
+})
 public class Eskaintzak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,8 +33,8 @@ public class Eskaintzak implements Serializable {
 	@Column(name="Ordutegia")
 	private String ordutegia;
 
-	@Column(name="Postua")
-	private String postua;
+	@Column(name="Arloa")
+	private String arloa;
 
 	@Column(name="Soldata")
 	private String soldata;
@@ -41,6 +46,7 @@ public class Eskaintzak implements Serializable {
 
 	public Eskaintzak() {
 	}
+	
 
 	public int getIdEskaintzak() {
 		return this.idEskaintzak;
@@ -82,12 +88,12 @@ public class Eskaintzak implements Serializable {
 		this.ordutegia = ordutegia;
 	}
 
-	public String getPostua() {
-		return this.postua;
+	public String getArloa() {
+		return this.arloa;
 	}
 
-	public void setPostua(String postua) {
-		this.postua = postua;
+	public void seArloa(String arloa) {
+		this.arloa = arloa;
 	}
 
 	public String getSoldata() {

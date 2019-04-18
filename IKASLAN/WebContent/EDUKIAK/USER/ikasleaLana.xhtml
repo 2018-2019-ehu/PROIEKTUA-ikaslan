@@ -31,18 +31,56 @@
 	</div>
 	<br></br>
 	<h2 style="color: white; text-align: center;">LAN BILATZAILEA</h2>
-	<h3>Hauek dira dauden lan eskaintzak. Bilaketa zehatzagoa egiteko idatzi filtroetan.</h3>
+	
 	<div class="divprofila">
 		<br></br>
+		<h4>LAN ESKAINTZAK</h4>
+		
 		<h:form>
-			<h:dataTable value="#{orokorrakMB.listEskaintzak()}" var="eskaintzak" border="2">
-				<h:column>
+			<h5>NAHI DITUZUN FILTROAK APLIKATU</h5>
+			ARLOA:<h:selectOneMenu value="#{orokorrakMB.arloa}">
+					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
+					<f:selectItem itemValue = "Telekomunikazioak" itemLabel = "Telekomunikazioak" /> 
+   					<f:selectItem itemValue = "Mekanika" itemLabel = "Mekanika" />
+   					</h:selectOneMenu>
+   					
+   			ENPRESA POSIBLEAK:<h:selectOneMenu value="#{orokorrakMB.enpresa}">
+					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
+					</h:selectOneMenu>
+					
+			BILATU:<h:commandButton id="bilatu" value="BILATU" actionListener="#{orokorrakMB.setAgertu()}" />
+			<h:dataTable  rendered="#{orokorrakMB.eskaintzakAgertu==true}" value="#{orokorrakMB.listEskaintzak}" var="eskaintzak" border="2" >
+				<h:column >
 					<f:facet name="header">IRAUPENA</f:facet>
 					#{eskaintzak.iraupena}
 				</h:column>
 				<h:column>
 					<f:facet name="header">ORDUTEGIA</f:facet>
 					#{eskaintzak.ordutegia}
+				</h:column>
+				<h:column>
+					<f:facet name="header">SOLDATA</f:facet>
+					#{eskaintzak.soldata}
+				</h:column>
+				<h:column >
+					<f:facet name="header">DESKRIBAPENA</f:facet>
+					#{eskaintzak.deskribapena}
+				</h:column>
+				<h:column>
+					<f:facet name="header">LEKUA</f:facet>
+					#{eskaintzak.lekua}
+				</h:column>
+				<h:column>
+					<f:facet name="header">ARLOA</f:facet>
+					#{eskaintzak.arloa}
+				</h:column>
+				<h:column>
+					<f:facet name="header">ENPRESA</f:facet>
+					#{eskaintzak.enpresa.izena}
+				</h:column>
+				<h:column>
+					<f:facet name="header">ERAGIKETA</f:facet>
+					<h:commandButton id="aukeratu" value="AUKERATU" actionListener="#{orokorrakMB.eskariaGehitu(eskaintzak.idEskaintzak)}" />
 				</h:column>
 			
 			</h:dataTable>

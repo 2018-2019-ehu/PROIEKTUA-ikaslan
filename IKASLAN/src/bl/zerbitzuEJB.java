@@ -115,6 +115,36 @@ public class zerbitzuEJB {
 	    	return eskariak;
 	  }
 	 
+	 public void eskariaGehitu(Eskariak eskari)
+	 {
+		 em.persist(eskari);
+	 }
+	 public Eskaintzak getEskaintza(int idEskaintza)
+	 {
+		 Eskaintzak eskaintza=em.find(Eskaintzak.class, idEskaintza);
+		 return eskaintza;
+	 }
+	 @SuppressWarnings("unchecked")
+	 public List<Eskaintzak> getEskaintzaArloaEnpresa(String arloa,String enpresa)
+	  {
+		 	List<Eskaintzak> eskaintzak=(List<Eskaintzak>)em.createNamedQuery("Eskaintzak.findArloaEnpresa").setParameter("arloa", arloa).setParameter("izena", enpresa).getResultList();
+	    	return eskaintzak;
+	  }
+	 @SuppressWarnings("unchecked")
+	 public List<Eskaintzak> getEskaintzaArloa(String arloa)
+	  {
+		 	List<Eskaintzak> eskaintzak=(List<Eskaintzak>)em.createNamedQuery("Eskaintzak.findArloa").setParameter("arloa", arloa).getResultList();
+	    	return eskaintzak;
+	  }
+	 @SuppressWarnings("unchecked")
+	 public List<Eskaintzak> getEskaintzaEnpresa(String enpresa)
+	  {
+		 	List<Eskaintzak> eskaintzak=(List<Eskaintzak>)em.createNamedQuery("Eskaintzak.findEnpresa").setParameter("izena",enpresa).getResultList();
+	    	return eskaintzak;
+	  }
+	 
+		
+	 
 	 
 	 
 	 
