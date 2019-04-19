@@ -15,12 +15,12 @@
 		</div>
 		<div class="div3">
 			<h:form class="form"> 
-				<h:commandButton action="ikasleaLana.xhtml" value="LANA BILATU" class="button" />
+				<h:commandButton action="ikasleaHome" value="HOME" class="button" />
 			</h:form>
 		</div>
 		<div class="div3">
 			<h:form class="form">
-				<h:commandButton action="ikasleaPub.xhtml" value="PUBLIKAZIOAK" class="button" />
+				<h:commandButton action="IkasleaPub.xhtml" value="PUBLIKAZIOAK" class="button" />
 			</h:form>
 		</div>
 		<div class="div3">
@@ -38,17 +38,25 @@
 		
 		<h:form>
 			<h5>NAHI DITUZUN FILTROAK APLIKATU</h5>
-			ARLOA:<h:selectOneMenu value="#{orokorrakMB.arloa}">
+			Arloa:
+				<h:selectOneMenu value="#{orokorrakMB.arloa}">
 					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
 					<f:selectItem itemValue = "Telekomunikazioak" itemLabel = "Telekomunikazioak" /> 
-   					<f:selectItem itemValue = "Mekanika" itemLabel = "Mekanika" />
-   					</h:selectOneMenu>
-   					
-   			ENPRESA POSIBLEAK:<h:selectOneMenu value="#{orokorrakMB.enpresa}">
+		 			<f:selectItem itemValue = "Mekanika" itemLabel = "Mekanika" />
+		 		</h:selectOneMenu>
+   				
+   			
+   			Enpresa:
+	   			<h:selectOneMenu value="#{orokorrakMB.enpresa}">
 					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
-					</h:selectOneMenu>
-					
-			BILATU:<h:commandButton id="bilatu" value="BILATU" actionListener="#{orokorrakMB.setAgertu()}" />
+				</h:selectOneMenu>
+		
+			Bilatu:
+				<h:commandButton id="bilatu" value="BILATU" actionListener="#{orokorrakMB.setAgertu()}" />
+			
+			
+		
+			
 			<h:dataTable  rendered="#{orokorrakMB.eskaintzakAgertu==true}" value="#{orokorrakMB.listEskaintzak}" var="eskaintzak" border="2" >
 				<h:column >
 					<f:facet name="header">IRAUPENA</f:facet>
