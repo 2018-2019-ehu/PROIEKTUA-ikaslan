@@ -32,7 +32,7 @@
 	margin-top: 0;
 }
 .body7{
-	background-image: url("../enp.jpg");
+	background-image: url("../enp2.jpg");
 	background-size: 100%;
 	margin:0;
 	margin-top: 0;
@@ -73,6 +73,24 @@
        
     
 }
+.button3{
+	background-color: #729fcf;
+    border: none;
+    font-size: 16px;
+    color: black;
+    padding: 8px 22px;
+    text-align:center;
+    text-decoration: none;
+  	display:block;
+    border-radius: 4px 4px 4px;
+    -webkit-transition-duration:0.1s;
+    transition-duration:0.1s;
+    font-size: 12px;
+    margin: auto;
+   
+       
+    
+}
 .button{
 
     border: none;
@@ -98,6 +116,10 @@
 	background-color: #729fcf;
 	color: #ffffff;
 }
+.button3:hover{
+	background-color: #729fcf;
+	color: #ffffff;
+}
 
 .div0{
 	background-color: white;
@@ -111,7 +133,7 @@
 div{
 	background-color: white;
 	opacity: 1;
-	height: 75px;
+/* 	height: 75px; */
 	
 	
 }
@@ -148,6 +170,7 @@ div.div3{
 	opacity: 0.9;
 	
 }
+
 div.wrap{
 	width: 40%;
 	height: auto;
@@ -160,4 +183,51 @@ div.wrap{
 .data{
 	margin-left: 30px;
 	
+}
+.tabla{
+	border: 2px;
+	text-align: center;
+	border-radius: 4px 4px 4px;
+	border-collapse: collapse;
+	margin: auto;
+	width: 90%;
+	font-size: 14px;
+	
+}
+.head{
+	background-color:#729fcf;
+	color: white;
+}
+.popup-panel-overlay{
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+.popup-panel{
+    margin: 100px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #DDD;
+}
+.button4{
+	background-color: white;
+    border: none;
+    font-size: 16px;
+    color: black;
+    padding: 8px 22px;
+    text-align:center;
+    text-decoration: none;
+  	display:block;
+    border-radius: 4px 4px 4px;
+    -webkit-transition-duration:0.1s;
+    transition-duration:0.1s;
+    font-size: 12px;
+    margin: auto;
+   
+       
+    
 }

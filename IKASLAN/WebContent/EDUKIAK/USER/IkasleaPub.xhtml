@@ -33,8 +33,44 @@
 	<br></br>
 	<h2 style="color: white; text-align: center;">Ongi etorri #{orokorrakMB.i.izena} !</h2>
 	<div class="divprofila">
-		<h5>Publikazioak</h5>
+	<br></br>
+			<h3 style="color:navy;  text-align: center;">Publikazio panela!</h3>
+			<h:form>
+			<br></br>
+			<h:dataTable value="#{orokorrakMB.irakurriPub()}" var="p" styleClass="tabla" headerClass="head" border="2">
+				<h:column>
+					<f:facet name="header">Titulua</f:facet>
+					#{p.titulua}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Enpresa</f:facet>
+					#{p.enpresa.izena}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ikusi gehiago</f:facet>
+					<h:commandButton action="#{popupController.show()}" styleClass="button3" actionListener="#{orokorrakMB.pubBista(p.idPublikazioa)}" value="Ikusi gehiago" />
+				</h:column>
+			</h:dataTable>
+			</h:form>
 	</div>
 	
+	<h:form>
+	 <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{popupController.showPopup}">
+                <div class="popup-panel">
+                    <br></br>
+                   	<h1 style="text-align: center;" class="titulua"><h:outputText value="#{orokorrakMB.pub.titulua}" /></h1>
+                    <br></br>
+                    <b><h:outputText value="#{orokorrakMB.pub.enpresa.izena}" style="margin-left: 20px;"/></b>
+                    <h:outputText value=" enpresak publikatutako artikulua."  />
+                    <br></br>
+                    <p style="margin-left: 20px;">#{orokorrakMB.pub.deskribapena}</p>
+                    <br></br>
+                    <h:commandButton value="OK!" action="#{popupController.hide()}" styleClass="button3">
+                       
+                    </h:commandButton>
+                    <br></br>
+                </div>
+		</h:panelGroup>
+	</h:form>
 </h:body>
 </html>

@@ -34,65 +34,100 @@
 	
 	<div class="divprofila">
 		<br></br>
-		<h4>LAN ESKAINTZAK</h4>
+		<h4 style="text-align: center;">LAN ESKAINTZAK</h4>
 		
-		<h:form>
-			<h5>NAHI DITUZUN FILTROAK APLIKATU</h5>
-			Arloa:
-				<h:selectOneMenu value="#{orokorrakMB.arloa}">
+		<h:form >
+			<h:outputText style="margin-left: 20px;" value="Nahi dituzun filtroak aplikatu:" /> 
+			<h:panelGrid columns="6" style="margin-left: 20px;">
+			<h:outputText value="Arloa:" />
+				<h:selectOneMenu value="#{orokorrakMB.arloa}" >
 					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
 					<f:selectItem itemValue = "Telekomunikazioak" itemLabel = "Telekomunikazioak" /> 
 		 			<f:selectItem itemValue = "Mekanika" itemLabel = "Mekanika" />
 		 		</h:selectOneMenu>
-   				
    			
-   			Enpresa:
-	   			<h:selectOneMenu value="#{orokorrakMB.enpresa}">
-					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
+   			<h:outputText value="Enpresa:" />
+	   			<h:selectOneMenu value="#{orokorrakMB.enpresa}" >
+	   				<f:selectItem itemLabel="Denak" itemValue="Denak"/>
+					<f:selectItems value="#{orokorrakMB.listEnpresak}" var="e"  itemValue="#{e.izena}" itemLabel="#{e.izena}"></f:selectItems>
 				</h:selectOneMenu>
+				<br></br>
+
+				<h:commandButton id="bilatu" value="BILATU" actionListener="#{orokorrakMB.lanaBilatu()}" class="button2" />
+			</h:panelGrid>
+				<br></br>
 		
-			Bilatu:
-				<h:commandButton id="bilatu" value="BILATU" actionListener="#{orokorrakMB.setAgertu()}" />
 			
-			
-		
-			
-			<h:dataTable  rendered="#{orokorrakMB.eskaintzakAgertu==true}" value="#{orokorrakMB.listEskaintzak}" var="eskaintzak" border="2" >
+			<h:dataTable  rendered="#{orokorrakMB.eskaintzakAgertu==true}" styleClass="tabla" headerClass="head" value="#{orokorrakMB.lanaBilatu()}" var="eskaintzak" border="2" >
 				<h:column >
-					<f:facet name="header">IRAUPENA</f:facet>
+					<f:facet name="header">Iraupena</f:facet>
 					#{eskaintzak.iraupena}
 				</h:column>
 				<h:column>
-					<f:facet name="header">ORDUTEGIA</f:facet>
+					<f:facet name="header">Ordutegia</f:facet>
 					#{eskaintzak.ordutegia}
 				</h:column>
 				<h:column>
-					<f:facet name="header">SOLDATA</f:facet>
+					<f:facet name="header">Soldata</f:facet>
 					#{eskaintzak.soldata}
 				</h:column>
 				<h:column >
-					<f:facet name="header">DESKRIBAPENA</f:facet>
+					<f:facet name="header">Deskribapena</f:facet>
 					#{eskaintzak.deskribapena}
 				</h:column>
 				<h:column>
-					<f:facet name="header">LEKUA</f:facet>
+					<f:facet name="header">Lekua</f:facet>
 					#{eskaintzak.lekua}
 				</h:column>
 				<h:column>
-					<f:facet name="header">ARLOA</f:facet>
+					<f:facet name="header">Arloa</f:facet>
 					#{eskaintzak.arloa}
 				</h:column>
 				<h:column>
-					<f:facet name="header">ENPRESA</f:facet>
+					<f:facet name="header">Enpresa</f:facet>
 					#{eskaintzak.enpresa.izena}
 				</h:column>
 				<h:column>
-					<f:facet name="header">ERAGIKETA</f:facet>
-					<h:commandButton id="aukeratu" value="AUKERATU" actionListener="#{orokorrakMB.eskariaGehitu(eskaintzak.idEskaintzak)}" />
+					<f:facet name="header">Eragiketa</f:facet>
+					<h:commandButton action="#{popupController.show()}" styleClass="button3" id="aukeratu" value="AUKERATU" actionListener="#{orokorrakMB.eskariaGehitu(eskaintzak.idEskaintzak)}" />
 				</h:column>
 			
 			</h:dataTable>
+			
 		</h:form>
+		<h:form>
+	
+		  <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{popupController.showPopup}">
+                <div class="popup-panel">
+                    <br></br>
+                    <h:outputText value="#{orokorrakMB.eskari.eskaintzak.enpresa.izena}-ko #{orokorrakMB.eskari.eskaintzak.deskribapena} lanari aplikatu diozu." />
+                    <br></br>
+                    <br></br>
+                    <h:outputText value="Kondizioak hurrengoak dira:" />
+                    <br></br>
+                    <br></br>
+                    <b><h:outputText value="Soldata:" /></b>
+                    <h:outputText value=" #{orokorrakMB.eskari.eskaintzak.soldata}" />
+                    <br></br>
+                    <b><h:outputText value="Ordutegia: " /></b>
+                    <h:outputText value="#{orokorrakMB.eskari.eskaintzak.ordutegia}" />
+                    <br></br>
+                    <b><h:outputText value="Lekua: " /></b>
+                    <h:outputText value="#{orokorrakMB.eskari.eskaintzak.lekua}" />
+                    <br></br>
+                    <b><h:outputText value="Iraupena: " /></b>
+                    <h:outputText value="#{orokorrakMB.eskari.eskaintzak.iraupena}" />
+                    <br></br>
+                    <br></br>
+                    <h:commandButton value="OK!" action="#{popupController.hide()}" styleClass="button3">
+                       
+                    </h:commandButton>
+                    <br></br>
+                </div>
+		</h:panelGroup>
+		</h:form>
+		<br></br>
+		<br></br>
 	</div>
 	
 </h:body>

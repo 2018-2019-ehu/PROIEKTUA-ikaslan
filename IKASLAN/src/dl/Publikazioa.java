@@ -28,6 +28,12 @@ public class Publikazioa implements Serializable {
 
 	public Publikazioa() {
 	}
+	public Publikazioa( String titulua,String deskribapena, Enpresa enpresa) {
+		this.titulua=titulua;
+		this.deskribapena=deskribapena;
+		this.enpresa=enpresa;
+		
+	}
 
 	public int getIdPublikazioa() {
 		return this.idPublikazioa;

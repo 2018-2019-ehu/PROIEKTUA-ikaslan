@@ -15,6 +15,8 @@ public class Eskariak implements Serializable {
 
 	@Id
 	private int idEskariak;
+	
+	
 
 	//uni-directional many-to-one association to Eskaintzak
 	@ManyToOne
@@ -25,14 +27,17 @@ public class Eskariak implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="Ikaslea_NAN")
 	private Ikaslea ikaslea;
+	
+	
 
 	public Eskariak() {
 	}
 	
-	public Eskariak(int idEskaria, Ikaslea ikasle)
+	public Eskariak(int idEskaria, Ikaslea ikasle,String mezua)
 	{
 		this.idEskariak=idEskaria;
 		this.ikaslea=ikasle;
+	
 	}
 
 	public int getIdEskariak() {
@@ -58,5 +63,8 @@ public class Eskariak implements Serializable {
 	public void setIkaslea(Ikaslea ikaslea) {
 		this.ikaslea = ikaslea;
 	}
+
+	
+	
 
 }

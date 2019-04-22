@@ -6,12 +6,14 @@ import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import dl.Enpresa;
 import dl.Eskaintzak;
 import dl.Eskariak;
 import dl.Ikaslea;
+import dl.Publikazioa;
 
 
 @Singleton
@@ -23,15 +25,17 @@ public class zerbitzuEJB {
 	
 	public void enpresaGehitu(Enpresa e){
 	//---------------------------------------------------	
-		try
-    	{
-    		em.createNamedQuery("IkasleaEntity.findUser").setParameter("username", e.getUsername()).getSingleResult();
+		try{
+			em.createNamedQuery("Enpresa.findUsern").setParameter("username", e.getUsername()).getSingleResult();
+		
+			
     		
-    		//Enpresa jadanik existitzen dela dioen errorea falta da!
+    		
     	}
-    	catch(Exception o)
-		{
-    		em.persist(e);//Soilik gorde na hori ez badago
+		catch (NoResultException exc) {
+			// TODO: handle exception
+		
+			em.persist(e);//Enpresa jadanik existitzen dela dioen errorea falta da!
     	}
 	//----------------------------------------------------	
 	}
@@ -67,7 +71,7 @@ public class zerbitzuEJB {
 	{
 		try
 		{
-			Enpresa e=(Enpresa)em.createNamedQuery("Enpresa.findUser").setParameter("username", username).getSingleResult();
+			Enpresa e=(Enpresa)em.createNamedQuery("Enpresa.findUsern").setParameter("username", username).getSingleResult();
 			return e;
 		}
 		catch(Exception e)
@@ -144,9 +148,28 @@ public class zerbitzuEJB {
 	  }
 	 
 		
+	 public void publikazioaGehitu(Publikazioa p){
+		 em.persist(p);
+	 }
 	 
 	 
+	 public void eskaintzaGehitu(Eskaintzak eskaintza){
+		 em.persist(eskaintza);
+	 }
 	 
-	 
-	 
+	 @SuppressWarnings("unchecked")
+	public List<Publikazioa> irakurriPubli(){
+		 return (List<Publikazioa>)em.createNamedQuery("Publikazioa.findAll").getResultList();
+	 }
+	 public Publikazioa publikazioaBilatu(int id){
+		 return em.find(Publikazioa.class, id);
+	 }
+	 public void ikasleaEzab(String nan){
+		 em.remove(em.find(Ikaslea.class, nan));
+	 }
+	 public void enpresaEzab(int id){
+		 
+		 em.remove(em.find(Enpresa.class, id));
+		 
+	 }
 }

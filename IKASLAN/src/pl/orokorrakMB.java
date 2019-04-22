@@ -8,12 +8,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+
 import bl.zerbitzuEJB;
 import dl.Enpresa;
 import dl.Eskaintzak;
 import dl.Eskariak;
 import dl.Ikaslea;
-
+import dl.Publikazioa;
 
 import java.io.Serializable;
 
@@ -38,10 +39,11 @@ public class orokorrakMB implements Serializable {
 	private zerbitzuEJB ejb;
 	Ikaslea i;
 	Enpresa e;
+	Publikazioa pub;
 	private boolean eskaintzakAgertu=false;
 	private String arloa= "Denak";
 	private String enpresa= "Denak";
-	
+	Eskariak eskari;
 	
 	/////Datu basea betetzeko:
 	public void enpresaGorde(EnpresaMB en) throws IOException{ 
@@ -136,9 +138,9 @@ public class orokorrakMB implements Serializable {
 	public List<Eskaintzak> getListEskaintzak()
 	{
 		List<Eskaintzak> eskaintzak;
-		if(arloa=="Denak")
+		if(arloa.equals("Denak"))
 		{
-			if(enpresa=="Denak")
+			if(enpresa.equals("Denak"))
 			{
 				eskaintzak=ejb.getListEskaintzak();//Bilatu denak
 			}
@@ -149,7 +151,7 @@ public class orokorrakMB implements Serializable {
 		}
 		else
 		{
-			if(enpresa=="Denak")
+			if(enpresa.equals("Denak"))
 			{
 				eskaintzak=ejb.getEskaintzaArloa(arloa);//bilatu arloa
 			}
@@ -175,11 +177,12 @@ public class orokorrakMB implements Serializable {
 	
 	public void eskariaGehitu(int idEskaintzak)
 	{
-		System.out.println(idEskaintzak);
+		
 		Eskariak eskaria=new Eskariak();
 		Eskaintzak eskaintza=ejb.getEskaintza(idEskaintzak);
 		eskaria.setEskaintzak(eskaintza);
 		eskaria.setIkaslea(i);
+		eskari=eskaria;
 		ejb.eskariaGehitu(eskaria);
 	}
 
@@ -206,7 +209,63 @@ public class orokorrakMB implements Serializable {
 	public void setEnpresa(String enpresa) {
 		this.enpresa = enpresa;
 	}
+	public void publikazioaGorde(publikazioaMB pub){
+		
+		Publikazioa pubDB = new Publikazioa(pub.getTitulua(),pub.getDeskribapena(),e);
+		ejb.publikazioaGehitu(pubDB);
+	}
+	public void eskaintzaGorde(eskaintzaMB esk){
+		Eskaintzak eska = new Eskaintzak(esk.getDeskribapena(),esk.getIraupena(),esk.getLekua(),esk.getOrdutegia(),esk.getArloa(),esk.getSoldata(),e);
+		ejb.eskaintzaGehitu(eska);
+	}
+	public List<Publikazioa> irakurriPub(){
+		return ejb.irakurriPubli();
+	}
 	
-	
+	public void pubBista(int id){
+		pub = ejb.publikazioaBilatu(id);
+		
+	}
 
+	public Publikazioa getPub() {
+		return pub;
+	}
+
+	public void setPub(Publikazioa pub) {
+		this.pub = pub;
+	}
+	
+	
+	public List<Eskaintzak> lanaBilatu(){
+		
+		eskaintzakAgertu=true;
+		return getListEskaintzak();
+		
+		
+	}
+
+	public Eskariak getEskari() {
+		return eskari;
+	}
+
+	public void setEskari(Eskariak eskari) {
+		this.eskari = eskari;
+	}
+	
+	public void ikasleaEzabatu(String nan){
+		ejb.ikasleaEzab(nan);
+	}
+	public void enpresaEzabatu(int id){
+		ejb.enpresaEzab(id);
+		
+	}
+
+	public Enpresa getE() {
+		return e;
+	}
+
+	public void setE(Enpresa e) {
+		this.e = e;
+	}
+	
 }

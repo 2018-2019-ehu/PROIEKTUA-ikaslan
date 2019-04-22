@@ -46,7 +46,16 @@ public class Eskaintzak implements Serializable {
 
 	public Eskaintzak() {
 	}
-	
+	public Eskaintzak(String deskribapena,String iraupena,String lekua,String ordutegia,String arloa,String soldata,Enpresa enpresa) {
+		this.deskribapena=deskribapena;
+		this.iraupena=iraupena;
+		this.lekua=lekua;
+		this.ordutegia=ordutegia;
+		this.arloa=arloa;
+		this.soldata=soldata;
+		this.enpresa=enpresa;
+		
+	}
 
 	public int getIdEskaintzak() {
 		return this.idEskaintzak;

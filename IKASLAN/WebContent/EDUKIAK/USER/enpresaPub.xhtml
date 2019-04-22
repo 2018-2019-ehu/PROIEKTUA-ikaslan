@@ -10,7 +10,7 @@
     <title>Ikaslan</title>
 </h:head>
 <h:body class="body7">
-	<div class="div0">
+	<div class="div0" >
 		<div class="image">
 			<img src="../logo.png" style="max-height: 100%; max-width: 100%;"></img>
 		</div>
@@ -31,10 +31,65 @@
 		</div>
 	</div>
 	<br></br>
-	<h2 style="color: white; text-align: center;">Zure proiektuak aurkezteko orrialdea!</h2>
-	<div class="divprofila">
+	<div class="divprofila" >
+		<br></br>
+		
+		<h3 style="color:navy;  text-align: center;">Lan bat eskaini!</h3>
+		<h:form>
+		<h:panelGrid columns="2" style="margin:auto;  ">
+			<h:outputText value="Arloa:" />
+			<h:inputText value="#{eskaintzaMB.arloa}" />
+			<h:outputText value="Iraupena:" />
+			<h:inputText value="#{eskaintzaMB.iraupena}" />
+			<h:outputText value="Lekua:" />
+			<h:inputText value="#{eskaintzaMB.lekua}" />
+			<h:outputText value="Ordutegia:" />
+			<h:inputText value="#{eskaintzaMB.ordutegia}" />
+			<h:outputText value="Soldata:" />
+			<h:inputText value="#{eskaintzaMB.soldata}" />
+		</h:panelGrid>
+			<h:outputText style="margin-left:20px;" value="Deskribatu eskaintzen duzun lana:" />
+			<br></br>
+			<br></br>
+		<h:inputTextarea  value="#{eskaintzaMB.deskribapena}" style="height: 100px; width:93%; margin-left:20px;"/>
+		<br></br>
+		<h:commandButton  id="publikatu" action="#{popupController.show()}" actionListener="#{orokorrakMB.eskaintzaGorde(eskaintzaMB)}"  value="AURRERA!" class="button"/>
+		
+		</h:form>
 		
 	</div>
-	
+	<br></br>
+	<div class="divprofila">
+		<br></br>
+		
+		<h3 style="color:navy;  text-align: center;">Publikazio bat egin!</h3>
+		<h:form>
+		
+			<h:outputText style="margin-left:20px" value="Titulua:  " />
+			<h:inputText value="#{publikazioaMB.titulua}" style="width: 75%;"/>
+			<br></br>
+			<br></br>
+			<h:outputText value="Deskribatu zure proiektua:" style="margin-left:20px" />
+			<br></br>
+			<br></br>
+		<h:inputTextarea value="#{publikazioaMB.deskribapena}" style="height: 100px; width:93%; margin-left:20px;"/>
+		<br></br>
+		<h:commandButton id="publikatu" action="#{popupController.show()}" actionListener="#{orokorrakMB.publikazioaGorde(publikazioaMB)}"  value="PUBLIKATU!" class="button"/>
+		
+		</h:form>
+		
+	</div>
+	<h:form>
+	 <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{popupController.showPopup}">
+                <div class="popup-panel">
+                    <br></br>
+                    <h:outputText value="Ondo publikatu da." />
+                    <br></br>
+                    <h:commandButton value="OK!" action="#{popupController.hide()}" styleClass="button3">
+                       
+                    </h:commandButton>
+                </div>
+		</h:panelGroup>
+	</h:form>
 </h:body>
 </html>
