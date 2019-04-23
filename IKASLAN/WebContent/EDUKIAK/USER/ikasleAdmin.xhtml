@@ -15,6 +15,11 @@
 		</div>
 		<div class="div3">
 			<h:form class="form"> 
+				<h:commandButton action="ikasleaHome" value="HOME" class="button" />
+			</h:form>
+		</div>
+		<div class="div3">
+			<h:form class="form"> 
 				<h:commandButton action="ikasleaLana.xhtml" value="LANA BILATU" class="button" />
 			</h:form>
 		</div>
@@ -23,11 +28,7 @@
 				<h:commandButton action="IkasleaPub.xhtml" value="PUBLIKAZIOAK" class="button" />
 			</h:form>
 		</div>
-		<div class="div3">
-			<h:form class="form">
-				<h:commandButton  action="ikasleAdmin" value="ESKARIEN EGOERA" class="button" />
-			</h:form>
-		</div>
+	
 		<div class="div3" style="margin-left: 30px">
 			<h:form class="form">
 				<h:commandButton  action="#{orokorrakMB.logout()}" value="LOGOUT" class="button" />
@@ -39,22 +40,26 @@
 	<h2 style="color: white; text-align: center;">Ongi etorri #{orokorrakMB.i.izena} !</h2>
 	<div class="divprofila">
 		<br></br>
-		<h4 style="text-align: center;">Zure profila</h4>
-		<p class="data"> <strong>Username:</strong> #{orokorrakMB.i.username}</p>
-		<p class="data"> <strong>Izena abizenak:</strong> #{orokorrakMB.i.abizena}, #{orokorrakMB.i.izena}</p>
-		<p class="data"> <strong>Email:</strong> #{orokorrakMB.i.email}</p>
-		<p class="data"> <strong>NAN:</strong> #{orokorrakMB.i.nan}</p>
-		<p class="data"> <strong>Jaiotze data:</strong> #{orokorrakMB.i.jaiotzeData}</p>
-		<p class="data"> <strong>Arloa:</strong> #{orokorrakMB.i.arloa}</p>
+		<h3 style="text-align: center;" >Zure eskariak kudeatu</h3>
 		<h:form>
-		<h:commandButton action="ikasleaAldatu" value="Profila aldatu" class="button2" />
+		<h:dataTable value="#{orokorrakMB.ikasleEskaBilatu(orokorrakMB.i.nan)}" var="eskari" headerClass="head" styleClass="tabla" border="2">
+			<h:column>
+				<f:facet name="header">Eskariaren ID</f:facet>
+				#{eskari.idEskariak}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Eskariaren informazioa</f:facet>
+				#{eskari.ikaslea.username} ikasleak #{eskari.eskaintzak.enpresa.izena} enpresara egindako eskaria #{eskari.eskaintzak.deskribapena} lanan.
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ekintza</f:facet>
+				<h:commandButton actionListener="#{orokorrakMB.eskariaEzabatu(eskari.idEskariak)}" value="EZABATU" styleClass="button3" />
+			</h:column>
+		</h:dataTable>
 		</h:form>
 		<br></br>
 	</div>
-	<br></br><br></br><br></br>
-	<h:form>
-			<h:commandButton action="login" actionListener="#{orokorrakMB.ikasleaEzabatu(orokorrakMB.i.nan)}" value="Ezabatu profila" styleClass="button3"/>
-		<br></br>
-	</h:form>
+	
+	
 </h:body>
 </html>

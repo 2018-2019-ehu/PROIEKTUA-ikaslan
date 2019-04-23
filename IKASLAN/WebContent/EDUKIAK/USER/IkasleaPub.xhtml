@@ -23,8 +23,12 @@
 				<h:commandButton action="ikasleaLana.xhtml" value="LANA BILATU" class="button" />
 			</h:form>
 		</div>
-
 		<div class="div3">
+			<h:form class="form">
+				<h:commandButton  action="ikasleAdmin" value="ESKARIEN EGOERA" class="button" />
+			</h:form>
+		</div>
+		<div class="div3" style="margin-left: 30px">
 			<h:form class="form">
 				<h:commandButton  action="#{orokorrakMB.logout()}" value="LOGOUT" class="button" />
 			</h:form>
@@ -52,8 +56,10 @@
 				</h:column>
 			</h:dataTable>
 			</h:form>
+			<br></br>
 	</div>
-	
+	<br></br>
+	<br></br>
 	<h:form>
 	 <h:panelGroup layout="block" styleClass="popup-panel-overlay" rendered="#{popupController.showPopup}">
                 <div class="popup-panel">

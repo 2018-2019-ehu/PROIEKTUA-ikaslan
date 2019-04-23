@@ -41,6 +41,13 @@
 					<h:outputText value="Izena:" />
 					<h:inputText id="izena" value="#{ikasleaMB.izena}" required="true" requiredMessage="*" />
 					<h:message for="izena" style="color:red"/>
+					<h:outputText value="Abizena:" />
+					<h:inputText id="abizena" value="#{ikasleaMB.abizena}" required="true" requiredMessage="*" />
+					<h:message for="abizena" style="color:red"/>
+					<h:outputText value="Jaiotze data:" />
+					<h:inputText id="data" required="true" value="#{ikasleaMB.jaiotzedata}" requiredMessage="*">  
+					</h:inputText>
+					<h:message for="data" style="color:red"/>
 					<h:outputText value="Username:" />
 					<h:inputText id="username" value="#{ikasleaMB.username}" required="true" requiredMessage="*" />
 					<h:message for="username" style="color:red"/>
@@ -50,9 +57,15 @@
 					<h:outputText value="Email:" />
 					<h:inputText id="email" value="#{ikasleaMB.email}" required="true" requiredMessage="*" />
 					<h:message for="email" style="color:red"/>
+					<h:outputText value="Ikasketen arloa:" />
+					<h:inputText id="arloa" value="#{ikasleaMB.arloa}" required="true" requiredMessage="*" />
+					<h:message for="arloa" style="color:red"/>
 					<h:outputText value="NAN:" />
 					<h:inputText id="nan" value="#{ikasleaMB.NAN}" required="true" requiredMessage="*" />
 					<h:message for="nan" style="color:red"/>
+					<h:outputText value="Ikasketak:" />
+					<h:inputTextarea id="ikasketak" value="#{ikasleaMB.ikasketak}" required="true" requiredMessage="*" />
+					<h:message for="ikasketak" style="color:red"/>
 				
 				</h:panelGrid>
 				<br></br>

@@ -172,4 +172,33 @@ public class zerbitzuEJB {
 		 em.remove(em.find(Enpresa.class, id));
 		 
 	 }
+	 @SuppressWarnings("unchecked")
+	public List<Eskariak> ikasleEskariakBilatu(String nan){
+		 
+		 return (List<Eskariak>)em.createNamedQuery("Eskariak.findIkasle").setParameter("nan",nan).getResultList();
+	 }
+	 public void eskariaEzab(int id){
+		 
+		 em.remove(em.find(Eskariak.class, id));
+		 
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Publikazioa> enpresaPublikazioaBilatu(int id){
+		 
+		 return (List<Publikazioa>)em.createNamedQuery("Publikazioa.findEnpresa").setParameter("id", id).getResultList();
+	 }
+	 public void ezabatuPub(int id){
+		 
+		em.remove(em.find(Publikazioa.class, id));
+		 
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Eskaintzak> enpresaLanakBilatu(int id){
+		 
+		 return (List<Eskaintzak>)em.createNamedQuery("Eskaintzak.findEnpresaLana").setParameter("id", id).getResultList();
+		 
+	 }
+	 public void eskaintzaEzabatu(int id){
+		 em.remove(em.find(Eskaintzak.class,id));
+	 }
 }

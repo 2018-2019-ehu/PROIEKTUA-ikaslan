@@ -2,7 +2,7 @@ package dl;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
+
 
 
 /**
@@ -38,9 +38,9 @@ public class Ikaslea implements Serializable {
 	@Column(name="Izena")
 	private String izena;
 
-	@Temporal(TemporalType.DATE)
+	
 	@Column(name="JaiotzeData")
-	private Date jaiotzeData;
+	private String jaiotzeData;
 
 	private String pasahitza;
 
@@ -48,12 +48,16 @@ public class Ikaslea implements Serializable {
 
 	public Ikaslea() {
 	}
-	public Ikaslea(String nan,String izena,String email,String username,String pasahitza) {
+	public Ikaslea(String nan,String izena,String email,String username,String pasahitza,String abizena,String jaiotzeData,String ikasketak,String arloa) {
 		this.nan=nan;
 		this.izena=izena;
 		this.email=email;
 		this.username=username;
 		this.pasahitza=pasahitza;
+		this.abizena=abizena;
+		this.jaiotzeData=jaiotzeData;
+		this.ikasketak=ikasketak;
+		this.arloa=arloa;
 	}
 
 	public String getNan() {
@@ -104,11 +108,11 @@ public class Ikaslea implements Serializable {
 		this.izena = izena;
 	}
 
-	public Date getJaiotzeData() {
+	public String getJaiotzeData() {
 		return this.jaiotzeData;
 	}
 
-	public void setJaiotzeData(Date jaiotzeData) {
+	public void setJaiotzeData(String jaiotzeData) {
 		this.jaiotzeData = jaiotzeData;
 	}
 

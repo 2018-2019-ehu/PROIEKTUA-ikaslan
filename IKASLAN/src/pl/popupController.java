@@ -11,7 +11,7 @@ import javax.faces.bean.ManagedBean;
  * @author Murad R. Imanbayli <muradimanbayli at gmail.com>
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class popupController implements Serializable{
     
     /**

@@ -9,7 +9,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Publikazioa.findAll", query="SELECT p FROM Publikazioa p")
+@NamedQueries({
+	@NamedQuery(name="Publikazioa.findAll", query="SELECT p FROM Publikazioa p"),
+	@NamedQuery(name="Publikazioa.findEnpresa", query="SELECT p FROM Publikazioa p WHERE p.enpresa.idEnpresa= :id")
+})
+
 public class Publikazioa implements Serializable {
 	private static final long serialVersionUID = 1L;
 

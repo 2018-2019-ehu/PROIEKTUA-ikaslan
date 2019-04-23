@@ -9,13 +9,20 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Eskariak.findAll", query="SELECT e FROM Eskariak e")
+@NamedQueries({
+	@NamedQuery(name="Eskariak.findAll", query="SELECT e FROM Eskariak e"),
+	@NamedQuery(name="Eskariak.findIkasle", query="SELECT e FROM Eskariak e WHERE e.ikaslea.nan = :nan")
+	
+})
+
 public class Eskariak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int idEskariak;
 	
+	
+	//private boolean egoera;
 	
 
 	//uni-directional many-to-one association to Eskaintzak
@@ -37,7 +44,7 @@ public class Eskariak implements Serializable {
 	{
 		this.idEskariak=idEskaria;
 		this.ikaslea=ikasle;
-	
+		//this.egoera=false;
 	}
 
 	public int getIdEskariak() {
@@ -63,7 +70,13 @@ public class Eskariak implements Serializable {
 	public void setIkaslea(Ikaslea ikaslea) {
 		this.ikaslea = ikaslea;
 	}
-
+//	public boolean isEgoera() {
+//		return egoera;
+//	}
+//
+//	public void setEgoera(boolean egoera) {
+//		this.egoera = egoera;
+//	}
 	
 	
 

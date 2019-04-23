@@ -13,7 +13,8 @@ import javax.persistence.*;
 	@NamedQuery(name="Eskaintzak.findAll", query="SELECT e FROM Eskaintzak e"),
 	@NamedQuery(name="Eskaintzak.findArloaEnpresa",query="SELECT e FROM Eskaintzak e WHERE e.arloa = :arloa and e.enpresa.izena= :izena"),
 	@NamedQuery(name="Eskaintzak.findArloa",query="SELECT e FROM Eskaintzak e WHERE e.arloa =:arloa"),
-	@NamedQuery(name="Eskaintzak.findEnpresa",query="SELECT e FROM Eskaintzak e WHERE e.enpresa.izena= :izena")
+	@NamedQuery(name="Eskaintzak.findEnpresa",query="SELECT e FROM Eskaintzak e WHERE e.enpresa.izena= :izena"),
+	@NamedQuery(name="Eskaintzak.findEnpresaLana",query="SELECT e FROM Eskaintzak e WHERE e.enpresa.idEnpresa= :id")
 })
 public class Eskaintzak implements Serializable {
 	private static final long serialVersionUID = 1L;

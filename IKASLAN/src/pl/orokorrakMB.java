@@ -55,7 +55,8 @@ public class orokorrakMB implements Serializable {
 	}
 	
 	public void ikasleaGorde(ikasleaMB ikaslea){
-		Ikaslea ikas = new Ikaslea(ikaslea.getNAN(),ikaslea.getIzena(),ikaslea.getEmail(),ikaslea.getUsername(),ikaslea.getPasahitza());
+		
+		Ikaslea ikas = new Ikaslea(ikaslea.getNAN(),ikaslea.getIzena(),ikaslea.getEmail(),ikaslea.getUsername(),ikaslea.getPasahitza(),ikaslea.getAbizena(), ikaslea.getJaiotzedata(),ikaslea.getIkasketak(),ikaslea.getArloa());
 		ejb.ikasleaGehitu(ikas);
 		
 	}
@@ -117,8 +118,8 @@ public class orokorrakMB implements Serializable {
 	//Datu basea betetzeko
 	public void ikasleaAldatu(ikasleaMB ikaslea){
 		
-		Ikaslea ialdatu = new Ikaslea(ikaslea.getNAN(),ikaslea.getIzena(),ikaslea.getEmail(),ikaslea.getUsername(),ikaslea.getPasahitza());		
-		i=ejb.ikasleaAldatuDB(ialdatu,i.getNan());
+		//Ikaslea ialdatu = new Ikaslea(ikaslea.getNAN(),ikaslea.getIzena(),ikaslea.getEmail(),ikaslea.getUsername(),ikaslea.getPasahitza());		
+		//i=ejb.ikasleaAldatuDB(ialdatu,i.getNan());
 		
 	}
 	public Ikaslea getI() {
@@ -267,5 +268,28 @@ public class orokorrakMB implements Serializable {
 	public void setE(Enpresa e) {
 		this.e = e;
 	}
-	
+	public List<Eskariak> ikasleEskaBilatu(String nan){
+		
+		return ejb.ikasleEskariakBilatu(nan);
+	}
+	public void eskariaEzabatu(int id){
+		ejb.eskariaEzab(id);
+	}
+	public List<Publikazioa> enpresaPubBilatu(int id){
+		
+		return ejb.enpresaPublikazioaBilatu(id);
+		
+	}
+	public void enpresaPubEzabatu(int id){
+		ejb.ezabatuPub(id);
+	}
+	public List<Eskaintzak> enpresaLanBilatu(int id){
+		
+		return ejb.enpresaLanakBilatu(id);
+		
+	}
+	public void eskaintzaEzab(int id){
+		ejb.eskaintzaEzabatu(id);
+		
+	}
 }
