@@ -58,13 +58,13 @@
 					<h:inputText id="email" value="#{ikasleaMB.email}" required="true" requiredMessage="*" />
 					<h:message for="email" style="color:red"/>
 					<h:outputText value="Ikasketen arloa:" />
-					<h:inputText id="arloa" value="#{ikasleaMB.arloa}" required="true" requiredMessage="*" />
+					<h:inputText id="arloa" value="#{ikasleaMB.arloa}" required="true" requiredMessage="*" style="text-transform: lowercase"/>
 					<h:message for="arloa" style="color:red"/>
 					<h:outputText value="NAN:" />
 					<h:inputText id="nan" value="#{ikasleaMB.NAN}" required="true" requiredMessage="*" />
 					<h:message for="nan" style="color:red"/>
 					<h:outputText value="Ikasketak:" />
-					<h:inputTextarea id="ikasketak" value="#{ikasleaMB.ikasketak}" required="true" requiredMessage="*" />
+					<h:inputTextarea id="ikasketak" value="#{ikasleaMB.ikasketak}" required="true" requiredMessage="*" style="text-transform: lowercase"/>
 					<h:message for="ikasketak" style="color:red"/>
 				
 				</h:panelGrid>

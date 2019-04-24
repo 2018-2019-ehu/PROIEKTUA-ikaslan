@@ -47,8 +47,7 @@
 			<h:outputText value="Arloa:" />
 				<h:selectOneMenu value="#{orokorrakMB.arloa}" >
 					<f:selectItem  itemValue="Denak" itemLabel="Denak" />
-					<f:selectItem itemValue = "Telekomunikazioak" itemLabel = "Telekomunikazioak" /> 
-		 			<f:selectItem itemValue = "Mekanika" itemLabel = "Mekanika" />
+					<f:selectItems value="#{orokorrakMB.lanarloenLista()}" var="a" itemValue="#{a}" itemLabel="#{a}"></f:selectItems>
 		 		</h:selectOneMenu>
    			
    			<h:outputText value="Enpresa:" />

@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Eskariak.findAll", query="SELECT e FROM Eskariak e"),
-	@NamedQuery(name="Eskariak.findIkasle", query="SELECT e FROM Eskariak e WHERE e.ikaslea.nan = :nan")
+	@NamedQuery(name="Eskariak.findIkasle", query="SELECT e FROM Eskariak e WHERE e.ikaslea.nan = :nan"),
+	@NamedQuery(name="Eskariak.findEnpresa", query="SELECT e FROM Eskariak e WHERE e.eskaintzak.enpresa.idEnpresa = :id")
 	
 })
 
@@ -21,8 +22,9 @@ public class Eskariak implements Serializable {
 	@Id
 	private int idEskariak;
 	
+	private int egoera;
 	
-	//private boolean egoera;
+	private String mezua;
 	
 
 	//uni-directional many-to-one association to Eskaintzak
@@ -44,7 +46,8 @@ public class Eskariak implements Serializable {
 	{
 		this.idEskariak=idEskaria;
 		this.ikaslea=ikasle;
-		//this.egoera=false;
+		this.egoera=0;
+		this.mezua="Oraindik ez duzu mezurik jaso eskari honen inguruan";
 	}
 
 	public int getIdEskariak() {
@@ -70,13 +73,23 @@ public class Eskariak implements Serializable {
 	public void setIkaslea(Ikaslea ikaslea) {
 		this.ikaslea = ikaslea;
 	}
-//	public boolean isEgoera() {
-//		return egoera;
-//	}
-//
-//	public void setEgoera(boolean egoera) {
-//		this.egoera = egoera;
-//	}
+
+	public int getEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(int egoera) {
+		this.egoera = egoera;
+	}
+
+	public String getMezua() {
+		return mezua;
+	}
+
+	public void setMezua(String mezua) {
+		this.mezua = mezua;
+	}
+
 	
 	
 

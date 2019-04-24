@@ -30,6 +30,11 @@
 			</h:form>
 		</div>
 		<div class="div3" style="margin-left: 30px">
+			<h:form class="form"> 
+				<h:commandButton action="enpresaEskariak" value="ESKARIAK" class="button" />
+			</h:form>
+		</div>
+		<div class="div3" >
 			<h:form class="form">
 				<h:commandButton action="#{orokorrakMB.logout()}" value="LOGOUT" class="button" />
 			</h:form>
@@ -37,14 +42,52 @@
 	</div>
 	<br></br>
 	<div class="divprofila">
+		<br></br>
 		<h3 style="text-align: center;">Ikasleen bilaketa</h3>
+		<br></br>
 		<h:form>
-			<h:dataTable >
-			
+		<h:outputText value="Ikasle bilaketa panela:" style="margin-left: 20px"/>
+		<br></br>
+		<h:panelGrid columns="6">
+		<h:outputText value="Arloa:" style="margin-left: 20px" />
+		<h:selectOneMenu value="#{orokorrakMB.arloikaslea}">
+			<f:selectItem itemValue="Denak" itemLabel="Denak"/>
+			<f:selectItems value="#{orokorrakMB.ikaslearloenLista()}" var="a" itemValue="#{a}" itemLabel="#{a}"></f:selectItems>
+		</h:selectOneMenu>
+		
+		<h:outputText value="Ikasketak:" />
+		<h:inputText value="#{orokorrakMB.ikasketak}" style="text-transform:lowercase"/>
+		<h:commandButton actionListener="#{orokorrakMB.ikasleaBilatu()}" value="BILATU" styleClass="button2"/>
+		
+		</h:panelGrid>
+		</h:form>
+		<br></br>
+		<h:form>
+			<h:dataTable value="#{orokorrakMB.ikasleaBilatu()}" rendered="#{orokorrakMB.ikasleakAgertu==true}" var="i" headerClass="head" styleClass="tabla" border="2">
+				<h:column>
+					<f:facet name="header">Izen Abizena</f:facet>
+					#{i.abizena},#{i.izena}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Jaiotze data</f:facet>
+					#{i.jaiotzeData}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Arloa</f:facet>
+					#{i.arloa}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Kontaktua</f:facet>
+					#{i.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ikasketak</f:facet>
+					#{i.ikasketak}
+				</h:column>
 			</h:dataTable>
 		</h:form>
 		
-	
+	<br></br>
 	</div>
 </h:body>
 </html>

@@ -52,6 +52,16 @@
 				#{eskari.ikaslea.username} ikasleak #{eskari.eskaintzak.enpresa.izena} enpresara egindako eskaria #{eskari.eskaintzak.deskribapena} lanan.
 			</h:column>
 			<h:column>
+				<f:facet name="header">Egoera</f:facet>
+				<h:outputText value="EZEZTATUTA" rendered="#{eskari.egoera==2}"/>
+				<h:outputText value="BAIEZTATUTA" rendered="#{eskari.egoera==1}"/>
+				<h:outputText value="ERANTZUNIK GABE" rendered="#{eskari.egoera==0}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Jasotako mezua</f:facet>
+				<h:outputText value="#{eskari.mezua}" />
+			</h:column>
+			<h:column>
 				<f:facet name="header">Ekintza</f:facet>
 				<h:commandButton actionListener="#{orokorrakMB.eskariaEzabatu(eskari.idEskariak)}" value="EZABATU" styleClass="button3" />
 			</h:column>

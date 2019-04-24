@@ -201,4 +201,30 @@ public class zerbitzuEJB {
 	 public void eskaintzaEzabatu(int id){
 		 em.remove(em.find(Eskaintzak.class,id));
 	 }
+	 @SuppressWarnings("unchecked")
+	public List<Ikaslea> ikasleIkasketaContains(String ikas){
+		 
+		 return em.createNamedQuery("Ikaslea.findIkasketak").setParameter("ikas", '%'+ikas+'%').getResultList();
+		 
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Ikaslea> ikasleArloa(String arloa){
+		 return em.createNamedQuery("Ikaslea.findArloa").setParameter("arloa", arloa).getResultList();
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Ikaslea> ikasleArloaIkas(String arloa,String ikas){
+		 return em.createNamedQuery("Ikaslea.findArloaIkas").setParameter("arloa", arloa).setParameter("ikas", '%'+ikas+'%').getResultList();
+	 }
+	 @SuppressWarnings("unchecked")
+	public List<Eskariak> enpresaEskaBilatu(int id){
+		 
+		 return em.createNamedQuery("Eskariak.findEnpresa").setParameter("id", id).getResultList();
+	 }
+	 
+	 public void eskariaAlda(int id,int egoera,String mezua){
+		 
+		 Eskariak e = em.find(Eskariak.class, id);
+		 e.setEgoera(egoera);
+		 e.setMezua(mezua);
+	 }
 }

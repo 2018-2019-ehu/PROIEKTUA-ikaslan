@@ -12,7 +12,10 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Ikaslea.findAll", query="SELECT i FROM Ikaslea i"),
-	@NamedQuery(name="Ikaslea.findUser", query="SELECT i FROM Ikaslea i WHERE i.username = :username")
+	@NamedQuery(name="Ikaslea.findUser", query="SELECT i FROM Ikaslea i WHERE i.username = :username"),
+	@NamedQuery(name="Ikaslea.findIkasketak", query="SELECT i FROM Ikaslea i WHERE i.ikasketak LIKE :ikas  "),
+	@NamedQuery(name="Ikaslea.findArloa", query= "SELECT i FROM Ikaslea i WHERE i.arloa = :arloa"),
+	@NamedQuery(name="Ikaslea.findArloaIkas", query= "SELECT i FROM Ikaslea i WHERE i.arloa = :arloa AND i.ikasketak LIKE :ikas")
 			})
 
 

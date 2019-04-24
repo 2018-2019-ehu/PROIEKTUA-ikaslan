@@ -24,6 +24,7 @@ public class loginMB {
 	}
 
 	public String getUsernameLog() {
+		
 		return usernameLog;
 	}
 

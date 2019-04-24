@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 
+
 import bl.zerbitzuEJB;
 import dl.Enpresa;
 import dl.Eskaintzak;
@@ -17,7 +18,7 @@ import dl.Ikaslea;
 import dl.Publikazioa;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -43,8 +44,11 @@ public class orokorrakMB implements Serializable {
 	private boolean eskaintzakAgertu=false;
 	private String arloa= "Denak";
 	private String enpresa= "Denak";
+	private String arloikaslea = "Denak";
+	private String ikasketak;
 	Eskariak eskari;
-	
+	private boolean ikasleakAgertu=false;
+
 	/////Datu basea betetzeko:
 	public void enpresaGorde(EnpresaMB en) throws IOException{ 
 		
@@ -292,4 +296,106 @@ public class orokorrakMB implements Serializable {
 		ejb.eskaintzaEzabatu(id);
 		
 	}
+
+	public String getArloikaslea() {
+		return arloikaslea;
+	}
+
+	public void setArloikaslea(String arloikaslea) {
+		this.arloikaslea = arloikaslea;
+	}
+
+	public String getIkasketak() {
+		return ikasketak;
+	}
+
+	public void setIkasketak(String ikasketak) {
+		this.ikasketak = ikasketak;
+	}
+	public List<String> ikaslearloenLista(){
+		
+		List<Ikaslea> ikasleak = ejb.getListIkasleak();
+		List<String> arloak = new ArrayList<>();
+		
+		for(int c=0;c<ikasleak.size();c=c+1){
+			
+			if(!arloak.contains(ikasleak.get(c).getArloa()))
+			{
+				arloak.add(ikasleak.get(c).getArloa());
+			}
+			
+		}
+		return arloak;
+	}
+	public List<String> lanarloenLista(){
+		
+		List<Eskaintzak> eskaintzak = ejb.getListEskaintzak();
+		List<String> arloak = new ArrayList<>();
+		
+		for(int c=0;c<eskaintzak.size();c=c+1){
+		
+			if(!arloak.contains(eskaintzak.get(c).getArloa()))
+			{
+				
+				arloak.add(eskaintzak.get(c).getArloa());
+			}
+			
+		}
+		return arloak;
+	}
+	public List<Ikaslea> getListIkasleak(){
+		List<Ikaslea> iList = new ArrayList<>();
+		if(arloikaslea.equals("Denak"))
+		{
+			if(ikasketak.isEmpty())
+			{
+				iList=ejb.getListIkasleak();//Bilatu denak
+			}
+			else
+			{
+				iList=ejb.ikasleIkasketaContains(ikasketak);
+			}
+		}
+		else
+		{
+			if(ikasketak.isEmpty())
+			{
+				iList= ejb.ikasleArloa(arloikaslea);//bilatu arloa ikaslea
+			}
+			else
+			{
+				iList=ejb.ikasleArloaIkas(arloikaslea, ikasketak);
+			}
+		}
+		
+	
+		return iList;
+	}
+	public List<Ikaslea> ikasleaBilatu(){
+		ikasleakAgertu=true;
+		return getListIkasleak();
+	}
+
+	public boolean isIkasleakAgertu() {
+		return ikasleakAgertu;
+	}
+
+	public void setIkasleakAgertu(boolean ikasleakAgertu) {
+		this.ikasleakAgertu = ikasleakAgertu;
+	}
+	
+	public List<Eskariak> enpresaEskariakBilatu(int id){
+		
+		return ejb.enpresaEskaBilatu(id);
+		
+	}
+	
+	public void eskariaAldatu(eskariaMB eskaria,int id){
+		System.out.println(eskaria.getEgoera());
+		System.out.println(eskaria.getMezua());
+		System.out.println(id);
+		ejb.eskariaAlda(id, eskaria.getEgoera(), eskaria.getMezua());
+		
+	}
+	
 }

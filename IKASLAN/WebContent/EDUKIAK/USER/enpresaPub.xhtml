@@ -30,6 +30,11 @@
 			</h:form>
 		</div>
 		<div class="div3" style="margin-left: 30px">
+			<h:form class="form"> 
+				<h:commandButton action="enpresaEskariak" value="ESKARIAK" class="button" />
+			</h:form>
+		</div>
+		<div class="div3" >
 			<h:form class="form">
 				<h:commandButton action="#{orokorrakMB.logout()}" value="LOGOUT" class="button" />
 			</h:form>
@@ -43,7 +48,7 @@
 		<h:form>
 		<h:panelGrid columns="2" style="margin:auto;  ">
 			<h:outputText value="Arloa:" />
-			<h:inputText value="#{eskaintzaMB.arloa}" />
+			<h:inputText value="#{eskaintzaMB.arloa}" style="text-transform: lowercase"/>
 			<h:outputText value="Iraupena:" />
 			<h:inputText value="#{eskaintzaMB.iraupena}" />
 			<h:outputText value="Lekua:" />
@@ -96,5 +101,6 @@
                 </div>
 		</h:panelGroup>
 	</h:form>
+	<br></br>
 </h:body>
 </html>
